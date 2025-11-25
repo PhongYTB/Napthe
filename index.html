@@ -6,38 +6,29 @@
 <style>
 body {
     font-family: Arial, sans-serif;
-    background: #f0f0f0;
+    background: #e9e9e9;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
-.container {
-    background: #fff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.box {
+    background: white;
+    padding: 20px;
     width: 300px;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    border-radius: 8px;
 }
 label {
     display: block;
     margin-top: 10px;
-    margin-bottom: 5px;
 }
 input, select, button {
     width: 100%;
     padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    margin-top: 5px;
 }
 button {
-    margin-top: 15px;
     background: #28a745;
     color: white;
     border: none;
@@ -46,66 +37,82 @@ button {
 button:hover {
     background: #218838;
 }
-.result {
+#result {
     margin-top: 15px;
     font-size: 14px;
-    text-align: center;
 }
 </style>
 </head>
 <body>
-<div class="container">
-    <h2>Nạp Thẻ</h2>
-    <label for="type">Loại thẻ</label>
+<div class="box">
+    <h3>Nạp Thẻ</h3>
+
+    <label>Loại thẻ</label>
     <select id="type">
-        <option value="viettel">Viettel</option>
-        <option value="mobiphone">Mobiphone</option>
-        <option value="vinaphone">Vinaphone</option>
+        <option value="VTT">Viettel</option>
+        <option value="VNP">Vinaphone</option>
+        <option value="VMS">Mobiphone</option>
     </select>
-    <label for="card">Mã thẻ</label>
-    <input type="text" id="card" placeholder="Nhập mã thẻ">
-    <label for="seri">Số seri</label>
-    <input type="text" id="seri" placeholder="Nhập số seri">
-    <button onclick="sendCard()">Gửi Thẻ</button>
-    <div class="result" id="result"></div>
+
+    <label>Mệnh giá</label>
+    <select id="amount">
+        <option value="10000">10000</option>
+        <option value="20000">20000</option>
+        <option value="50000">50000</option>
+        <option value="100000">100000</option>
+        <option value="200000">200000</option>
+        <option value="500000">500000</option>
+    </select>
+
+    <label>Mã thẻ</label>
+    <input id="pin" placeholder="Nhập mã thẻ">
+
+    <label>Seri</label>
+    <input id="seri" placeholder="Nhập seri">
+
+    <button onclick="napThe()">Gửi Thẻ</button>
+
+    <div id="result"></div>
 </div>
 
 <script>
-function sendCard() {
-    const type = document.getElementById('type').value;
-    const card = document.getElementById('card').value.trim();
-    const seri = document.getElementById('seri').value.trim();
-    const resultDiv = document.getElementById('result');
+function napThe() {
+    var type = document.getElementById("type").value;
+    var amount = document.getElementById("amount").value;
+    var pin = document.getElementById("pin").value.trim();
+    var seri = document.getElementById("seri").value.trim();
+    var result = document.getElementById("result");
 
-    if(!card || !seri){
-        resultDiv.textContent = "Vui lòng điền đầy đủ thông tin.";
+    if(pin === "" || seri === ""){
+        result.textContent = "Điền đầy đủ thông tin";
         return;
     }
 
-    const partner_id = "9172031604";
-    const partner_key = "db43f002d62655fd427d3bfb30999e88";
-
-    const data = {
-        partner_id: partner_id,
-        partner_key: partner_key,
+    var data = {
+        partner_id: "9172031604",
+        partner_key: "db43f002d62655fd427d3bfb30999e88",
         type: type,
-        card: card,
+        amount: amount,
+        pin: pin,
         seri: seri
     };
 
-    fetch('https://gachthefast.com/api', { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+    result.textContent = "Đang gửi thẻ...";
+
+    fetch("https://gachthefast.vn/chargingws/v2", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
     })
     .then(res => res.json())
     .then(res => {
-        resultDiv.textContent = JSON.stringify(res);
+        result.textContent = JSON.stringify(res, null, 2);
     })
     .catch(err => {
-        resultDiv.textContent = "Lỗi: " + err;
+        result.textContent = "Lỗi kết nối hoặc API chặn CORS";
     });
 }
 </script>
+
 </body>
 </html>
