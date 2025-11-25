@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Nạp Thẻ</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+input, select, button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button {
+    margin-top: 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #218838;
+}
+.result {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Nạp Thẻ</h2>
+    <label for="type">Loại thẻ</label>
+    <select id="type">
+        <option value="viettel">Viettel</option>
+        <option value="mobiphone">Mobiphone</option>
+        <option value="vinaphone">Vinaphone</option>
+    </select>
+    <label for="card">Mã thẻ</label>
+    <input type="text" id="card" placeholder="Nhập mã thẻ">
+    <label for="seri">Số seri</label>
+    <input type="text" id="seri" placeholder="Nhập số seri">
+    <button onclick="sendCard()">Gửi Thẻ</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function sendCard() {
+    const type = document.getElementById('type').value;
+    const card = document.getElementById('card').value.trim();
+    const seri = document.getElementById('seri').value.trim();
+    const resultDiv = document.getElementById('result');
+
+    if(!card || !seri){
+        resultDiv.textContent = "Vui lòng điền đầy đủ thông tin.";
+        return;
+    }
+
+    const partner_id = "9172031604";
+    const partner_key = "db43f002d62655fd427d3bfb30999e88";
+
+    const data = {
+        partner_id: partner_id,
+        partner_key: partner_key,
+        type: type,
+        card: card,
+        seri: seri
+    };
+
+    fetch('https://gachthefast.com/api', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+        resultDiv.textContent = JSON.stringify(res);
+    })
+    .catch(err => {
+        resultDiv.textContent = "Lỗi: " + err;
+    });
+}
+</script>
+</body>
+</html>
