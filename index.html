@@ -45,19 +45,18 @@ async function send() {
     let pid = "9172031604";
     let pkey = "db43f002d62655fd427d3bfb30999e88";
 
-    let body = {
-        partner_id: pid,
-        partner_key: pkey,
-        type: network,
-        code: code,
-        serial: seri,
-        amount: amount
-    };
+    let form = new URLSearchParams();
+    form.append("partner_id", pid);
+    form.append("partner_key", pkey);
+    form.append("type", network);
+    form.append("code", code);
+    form.append("serial", seri);
+    form.append("amount", amount);
 
     let res = await fetch(apiUrl, {
         method: "POST",
-        headers: { "ContentType": "application/json" },
-        body: JSON.stringify(body)
+        headers: { "ContentType": "application/x_www_form_urlencoded" },
+        body: form
     });
 
     let txt = await res.text();
