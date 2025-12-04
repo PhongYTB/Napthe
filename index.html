@@ -1,83 +1,63 @@
 <!doctype html>
-<html lang="vi">
+<html>
 <head>
-<meta charset="utf-8">
-<title>Multi Layer Encode</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
-
+<meta charset="utf8">
+<title>Phong Paste</title>
 <style>
 body{font-family:Arial;max-width:700px;margin:20px auto;}
-textarea{width:100percent;height:140px;padding:8px;box-sizing:border-box;font-family:monospace;}
-button{padding:8px 12px;margin:4px 0;border:1px solid #444;background:#eee;cursor:pointer;}
-.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+textarea{width:100%;height:200px;padding:8px;box-sizing:border-box;}
+button{padding:10px 16px;margin-top:8px;border:1px solid #444;background:#eee;cursor:pointer;}
+#out{margin-top:12px;padding:10px;border:1px solid #ccc;word-break:break-word;}
 </style>
 </head>
 <body>
 
-<h3>Mã hóa nhiều lớp</h3>
+<h2>Phong Paste</h2>
 
-<textarea id="input" placeholder="Nhập văn bản"></textarea>
+<textarea id="text"></textarea>
+<button onclick="savePaste()">Lưu</button>
 
-<input id="pass" style="width:100percent;padding:8px;box-sizing:border-box;margin-top:6px" placeholder="Mật khẩu AES">
-
-<div class="row">
-<button id="encode">Mã hóa nhiều lớp</button>
-<button id="decode">Giải nhiều lớp</button>
-</div>
-
-<textarea id="output" placeholder="Kết quả"></textarea>
-
-<button id="copy">Sao chép</button>
+<div id="out"></div>
 
 <script>
-function toHex(str){
-  let out = "";
-  for(let i=0;i<str.length;i++){
-    out += str.charCodeAt(i).toString(16).padStart(2,"0");
-  }
-  return out;
+async function savePaste(){
+    const token = "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";  
+    const user = "PhongYTB";
+    const repo = "Napthe";
+
+    const txt = document.getElementById("text").value;
+    if(!txt.trim()){
+        document.getElementById("out").innerHTML = "Không có nội dung";
+        return;
+    }
+
+    const id = Math.random().toString(36).substring(2,10);
+
+    const path = "posts/" + id + ".txt";
+
+    const url = "https://api.github.com/repos/" + user + "/" + repo + "/contents/" + path;
+
+    const body = {
+        message: "New paste " + id,
+        content: btoa(txt)
+    };
+
+    const res = await fetch(url,{
+        method:"PUT",
+        headers:{
+            "Authorization":"Bearer " + token,
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(body)
+    });
+
+    if(res.status === 201){
+        document.getElementById("out").innerHTML = 
+        "Đã lưu. Link: https://raw.githubusercontent.com/" + user + "/" + repo + "/main/" + path;
+    } else {
+        document.getElementById("out").innerHTML = "Lỗi khi lưu";
+    }
 }
-
-function fromHex(hex){
-  let out = "";
-  for(let i=0;i<hex.length;i+=2){
-    out += String.fromCharCode(parseInt(hex.substr(i,2),16));
-  }
-  return out;
-}
-
-document.getElementById("encode").onclick = function(){
-  let text = document.getElementById("input").value;
-  let pass = document.getElementById("pass").value;
-
-  let s1 = LZString.compressToUTF16(text);
-  let s2 = CryptoJS.AES.encrypt(s1, pass).toString();
-  let s3 = btoa(s2);
-  let s4 = toHex(s3);
-
-  document.getElementById("output").value = s4;
-};
-
-document.getElementById("decode").onclick = function(){
-  let data = document.getElementById("input").value;
-  let pass = document.getElementById("pass").value;
-
-  try{
-    let d1 = fromHex(data);
-    let d2 = atob(d1);
-    let d3 = CryptoJS.AES.decrypt(d2, pass).toString(CryptoJS.enc.Utf8);
-    let d4 = LZString.decompressFromUTF16(d3);
-
-    document.getElementById("output").value = d4;
-  }catch(e){
-    document.getElementById("output").value = "Sai dữ liệu hoặc sai mật khẩu";
-  }
-};
-
-document.getElementById("copy").onclick = function(){
-  navigator.clipboard.writeText(document.getElementById("output").value);
-};
 </script>
 
 </body>
