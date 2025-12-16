@@ -1,65 +1,92 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nuôi Em</title>
+
 <style>
 body {
   margin:0;
   font-family:Arial;
-  background:#f3f4f6;
+  background:#f6f7fb;
 }
 
 #menu {
+  position:sticky;
+  top:0;
+  background:linear-gradient(90deg,#4f46e5,#6366f1);
+  color:white;
+  padding:14px 16px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 20px;
-  background:#2563eb;
-  color:white;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
 
-#logo {
+#menu b {
   font-size:18px;
-  font-weight:bold;
 }
 
-#nav span {
-  margin-left:18px;
+#menu span {
+  margin-left:16px;
   cursor:pointer;
+  font-size:15px;
 }
 
-#nav span:hover {
-  text-decoration:underline;
+#menu span:active {
+  opacity:0.7;
 }
 
 #box {
-  max-width:700px;
-  margin:40px auto;
+  max-width:600px;
+  margin:20px auto;
   background:white;
-  padding:24px;
-  border-radius:10px;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
 input {
   width:100%;
   padding:12px;
-  margin-top:10px;
+  font-size:16px;
+  border:1px solid #ccc;
+  border-radius:8px;
 }
 
 button {
   width:100%;
   padding:12px;
   margin-top:12px;
-  background:#2563eb;
-  color:white;
+  font-size:16px;
   border:none;
-  border-radius:6px;
-  font-size:15px;
+  border-radius:8px;
+  background:#4f46e5;
+  color:white;
+}
+
+button:active {
+  transform:scale(0.98);
 }
 
 #ketqua {
   margin-top:20px;
+}
+
+#thongbao {
+  text-align:center;
+  color:#e11d48;
+  font-size:15px;
+}
+
+#card {
+  animation:hien 0.3s ease;
+}
+
+@keyframes hien {
+  from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
 #popup {
@@ -77,7 +104,7 @@ button {
   max-width:360px;
   margin:120px auto;
   padding:20px;
-  border-radius:10px;
+  border-radius:12px;
   text-align:center;
 }
 </style>
@@ -86,17 +113,16 @@ button {
 <body>
 
 <div id="menu">
-  <div id="logo">Nuôi Em</div>
-  <div id="nav">
+  <b>Nuôi Em</b>
+  <div>
     <span onclick="cuon()">Tra cứu</span>
     <span onclick="moPopup()">Ủng hộ</span>
-    <span onclick="alert('Liên hệ admin')">Liên hệ</span>
   </div>
 </div>
 
 <div id="box">
-  <h2>Tra cứu mã nuôi em</h2>
-  <input id="ma" placeholder="Nhập mã">
+  <h3>Tra cứu mã nuôi em</h3>
+  <input id="ma" placeholder="Nhập mã nuôi em">
   <button onclick="traCuu()">Tra cứu</button>
   <div id="ketqua"></div>
 </div>
@@ -105,7 +131,7 @@ button {
   <div id="popupBox">
     <h3>Chuyển tiền nuôi em</h3>
     <p>Tài khoản gachthefast</p>
-    <p>Tên Hoangnamphong</p>
+    <p>Hoangnamphong</p>
     <p>Số tiền tùy tâm ♥️</p>
     <button onclick="dongPopup()">Đóng</button>
   </div>
@@ -113,7 +139,7 @@ button {
 
 <script>
 function cuon() {
-  window.scrollTo({ top:200, behavior:"smooth" })
+  window.scrollTo({ top:100, behavior:"smooth" })
 }
 
 async function traCuu() {
@@ -121,7 +147,7 @@ async function traCuu() {
   const kq = document.getElementById("ketqua")
 
   if (ma === "") {
-    kq.innerHTML = "Vui lòng nhập mã"
+    kq.innerHTML = "<div id='thongbao'>Vui lòng nhập mã</div>"
     return
   }
 
@@ -130,12 +156,21 @@ async function traCuu() {
   const be = data.find(x => x.ma === ma)
 
   if (!be) {
-    kq.innerHTML = "Không tìm thấy mã"
+    kq.innerHTML = "<div id='thongbao'>Mã không tồn tại</div>"
     return
   }
 
   kq.innerHTML =
-    "<img src='"+be.anh+"' style='width:180px;border-radius:8px'><p>Họ tên "+be.hoten+"</p><p>Sinh năm "+be.sinhnam+"</p><p>Dân tộc "+be.dantoc+"</p><p>Trạng thái "+be.trangthai+"</p><p>Sống ở "+be.song_o+"</p><button onclick='moPopup()'>Chuyển tiền nuôi em</button>"
+    "<div id='card'>" +
+    "<img src='"+be.anh+"' style='width:100%;border-radius:10px'>" +
+    "<p><b>Mã</b> "+be.ma+"</p>" +
+    "<p><b>Họ tên</b> "+be.hoten+"</p>" +
+    "<p><b>Sinh năm</b> "+be.sinhnam+"</p>" +
+    "<p><b>Dân tộc</b> "+be.dantoc+"</p>" +
+    "<p><b>Trạng thái</b> "+be.trangthai+"</p>" +
+    "<p><b>Sống ở</b> "+be.song_o+"</p>" +
+    "<button onclick='moPopup()'>Chuyển tiền nuôi em</button>" +
+    "</div>"
 }
 
 function moPopup() {
