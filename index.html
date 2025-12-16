@@ -94,13 +94,13 @@ function ripple(e){
 }
 
 async function traCuu(){
-  const ma=document.getElementById("maInput").value.trim().toLowerCase();
+  const maInput=document.getElementById("maInput").value.trim();
   const kq=document.getElementById("result");
-  if(!ma){kq.innerHTML="<div class='notice'>Nhập mã trước</div>";return;}
+  if(!maInput){kq.innerHTML="<div class='notice'>Nhập mã trước</div>";return;}
   try{
     const res=await fetch("./thongtin.json");
     const data=await res.json();
-    const be=data.find(x=>x.ma.toLowerCase()===ma);
+    const be=data.find(x=>x.ma.trim()===maInput);
     if(!be){kq.innerHTML="<div class='notice'>Mã không tồn tại</div>";return;}
     kq.innerHTML=`<div class='info show'>
       <img src='${be.anh}'>
@@ -112,8 +112,8 @@ async function traCuu(){
       <p><b>Sống ở:</b> ${be.song_o}</p>
       <button class='mainbtn' onclick='openDonate()'>Chuyển tiền nuôi em</button>
     </div>`;
-    const info = kq.querySelector('.info');
-    const ps = info.querySelectorAll('p,img,button');
+    const info=kq.querySelector('.info');
+    const ps=info.querySelectorAll('p,img,button');
     ps.forEach((el,i)=>setTimeout(()=>el.classList.add('show'),i*120));
   }catch{
     kq.innerHTML="<div class='notice'>Lỗi dữ liệu</div>";
